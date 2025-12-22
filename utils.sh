@@ -236,7 +236,6 @@ validate_reference() {
 # ==============================================================================
 # CLEANUP FUNCTIONS
 # ==============================================================================
-
 # Cleanup function for trap
 cleanup() {
     local exit_code=$?
@@ -245,11 +244,12 @@ cleanup() {
     fi
     
     # Remove temp files if specified
-    if [[ "$KEEP_INTERMEDIATE" == "false" && -n "$TEMP_FILES" ]]; then
+    if [[ "${KEEP_INTERMEDIATE:-false}" == "false" && -n "${TEMP_FILES:-}" ]]; then
         log_info "Cleaning up temporary files..."
         rm -f $TEMP_FILES
     fi
 }
+
 
 # ==============================================================================
 # TIMING FUNCTIONS
